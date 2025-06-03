@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build: ./frontend
+    ports: ["80:3000"]
+  backend:
+    build: ./backend
+    ports: ["5000:5000"]
+    environment:
+      DATABASE_URL: postgres://user:pass@db:5432/chatdb
+      OPENAI_API_KEY: sk-your-openai-api-key
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: chatdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
